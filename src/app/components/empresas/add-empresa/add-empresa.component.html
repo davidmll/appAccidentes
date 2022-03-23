@@ -1,0 +1,21 @@
+<div class="container">
+  <form [formGroup]="dataEmpresa">
+    <div>
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="nombre"
+        />
+        <label for="float-input">Nombre</label>
+      </span>
+      <p-dropdown
+        [options]="accidentes"
+        formControlName="accidentes"
+        optionLabel="titulo"
+      ></p-dropdown>
+    </div>
+      <p-button label="Enviar" (onClick)="add()"></p-button>
+  </form>
+</div>

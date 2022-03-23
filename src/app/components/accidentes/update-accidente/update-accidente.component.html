@@ -1,0 +1,53 @@
+<div class="container">
+  <form [formGroup]="dataUpdateAccidentes">
+    <span class="p-float-label">
+      <input
+        id="float-input"
+        type="hidden"
+        pInputText
+        formControlName="idAccidente"
+      />
+    </span>
+    <div>
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="titulo"
+        />
+        <label for="float-input">Titulo</label>
+      </span>
+      <p-dropdown
+        [options]="zonas"
+        formControlName="localizacion"
+        optionLabel="nombre"
+      ></p-dropdown>
+    </div>
+    <div>
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText formControlName="tipo" />
+        <label for="float-input">Tipo</label>
+      </span>
+
+      <p-calendar
+        formControlName="fecha"
+        [style]="{ width: '130px' }"
+        dateFormat="dd.mm.yy"
+      >
+      </p-calendar>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <span class="p-float-label">
+        <textarea
+          pInputTextarea
+          formControlName="asunto"
+          [style]="{ width: '300px', height: '150px' }"
+        ></textarea>
+        <label for="float-input">Asunto</label>
+      </span>
+      <p-button label="Enviar" (onClick)="actualizar()"></p-button>
+    </div>
+  </form>
+</div>

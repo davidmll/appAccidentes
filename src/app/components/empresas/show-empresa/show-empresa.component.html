@@ -1,0 +1,42 @@
+<div class="contenedor">
+  <p-table
+    [value]="empresas"
+    responsiveLayout="scroll"
+    [paginator]="true"
+    [rows]="rows"
+    [showCurrentPageReport]="true"
+    [(first)]="first"
+    currentPageReportTemplate="{first} de {last} de {totalRecords} entradas"
+    [rowsPerPageOptions]="[5,10,15]"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Accidente</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empresa>
+      <tr>
+        <td>{{ empresa.idempresa }}</td>
+        <td>{{ empresa.nombre }}</td>
+        <td>{{ empresa.accidentes}}</td>
+        <td class="icons">
+          <button pButton type="button" class="p-button-warning" (click)="actualizarEmpresa(empresa)">
+            <i class="pi pi-pencil"></i>
+          </button>
+          <button
+            pButton
+            type="button"
+            class="p-button-danger"
+            (click)="eliminarEmpresa(empresa)"
+          >
+
+            <i class="pi pi-trash" ></i>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

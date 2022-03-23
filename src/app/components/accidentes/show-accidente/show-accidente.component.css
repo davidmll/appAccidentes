@@ -1,0 +1,18 @@
+.contenedor{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 95%;
+  margin: 2% auto;
+}
+
+
+.icons{
+  display: flex;
+  justify-content: space-between;
+}
+.icons button{
+  margin-right: 5px;
+}
+
+.icons button i{
+  padding-left: 4px;
+}

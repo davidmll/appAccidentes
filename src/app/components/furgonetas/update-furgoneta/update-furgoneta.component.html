@@ -1,0 +1,32 @@
+<div class="container">
+  <form [formGroup]="dataUpdateFurgonetas">
+    <input
+          id="float-input"
+          type="hidden"
+          pInputText
+          formControlName="idFurgoneta"
+        />
+    <div>
+      <span class="p-float-label">
+        <input
+          id="float-input"
+          type="text"
+          pInputText
+          formControlName="identificacion"
+        />
+        <label for="float-input">Identificacion</label>
+      </span>
+      <p-dropdown
+        [options]="zonas"
+        formControlName="zonas"
+        optionLabel="nombre"
+      ></p-dropdown>
+      <p-dropdown
+        [options]="empresas"
+        formControlName="empresas"
+        optionLabel="idempresa"
+      ></p-dropdown>
+    </div>
+      <p-button label="Enviar" (onClick)="actualizar()"></p-button>
+  </form>
+</div>
