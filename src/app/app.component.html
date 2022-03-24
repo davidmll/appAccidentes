@@ -1,2 +1,3 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="!authService.token"></app-navbar>
+<app-navbar-admin *ngIf="authService.token"></app-navbar-admin>
 <router-outlet></router-outlet>

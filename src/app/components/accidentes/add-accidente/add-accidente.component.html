@@ -15,13 +15,15 @@
         formControlName="localizacion"
         optionLabel="nombre"
       ></p-dropdown>
+
+
     </div>
     <div>
-      <span class="p-float-label">
-        <input id="float-input" type="text" pInputText formControlName="tipo" />
-        <label for="float-input">Tipo</label>
-      </span>
-
+      <p-dropdown
+      [options]="estados"
+      formControlName="tipo"
+      optionLabel="estado"
+    ></p-dropdown>
       <p-calendar
         formControlName="fecha"
         [style]="{ width: '130px' }"

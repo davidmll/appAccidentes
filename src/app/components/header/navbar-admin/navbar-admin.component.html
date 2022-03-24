@@ -1,0 +1,4 @@
+<p-menubar [model]="items" >
+  <button class="btn btn-primary" routerLink="/login" *ngIf="!authService.token">Login</button>
+  <button class="btn btn-primary" routerLink="/login" *ngIf="authService.token" (click)="logout()">Logout</button>
+</p-menubar>

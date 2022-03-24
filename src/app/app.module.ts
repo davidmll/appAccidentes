@@ -7,6 +7,8 @@ import { AccidentesModule } from './components/accidentes/accidentes.module';
 import { EmpresasModule } from './components/empresas/empresas.module';
 import { FurgonetasModule } from './components/furgonetas/furgonetas.module';
 import { HeaderModule } from './components/header/header.module';
+import { UsuariosModule } from './components/usuarios/usuarios.module';
+import { PagesModule } from './pages/pages.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -17,7 +19,9 @@ import { HeaderModule } from './components/header/header.module';
     AccidentesModule,
     HeaderModule,
     EmpresasModule,
-    FurgonetasModule
+    FurgonetasModule,
+    UsuariosModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

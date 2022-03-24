@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Furgoneta } from 'src/app/interfaces/furgoneta';
+import { AuthService } from 'src/app/services/auth.service';
 import { FurgonetasService } from 'src/app/services/furgonetas.service';
 import swal from 'sweetalert2';
 
@@ -16,12 +17,21 @@ export class ShowFurgonetaComponent implements OnInit {
 
   rows = 5;
 
-  constructor(private furgonetaService: FurgonetasService,private route:Router) {}
+  constructor(private furgonetaService: FurgonetasService,private route:Router,private auth:AuthService) {}
 
   ngOnInit(): void {
-    this.furgonetaService
-      .getAllFurgonetas()
-      .subscribe((data) => (this.furgonetas = data));
+
+
+      if (
+        this.auth.isAuthenticated() &&
+        this.auth.usuario.roles[0] == 'ROLE_ADMIN'
+      ) {
+        this.furgonetaService
+        .getAllFurgonetas()
+        .subscribe((data) => (this.furgonetas = data));
+      } else {
+        this.route.navigate(['/']);
+      }
   }
 
   actualizarFurgoneta(furgoneta:Furgoneta){

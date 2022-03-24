@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Accidente } from 'src/app/interfaces/accidente';
 import { AccidentesService } from 'src/app/services/accidentes.service';
+import { AuthService } from 'src/app/services/auth.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -16,12 +17,12 @@ export class ShowAccidenteComponent implements OnInit {
 
   rows = 5;
 
-  constructor(private accidenteService: AccidentesService,private route:Router) {}
+  constructor(private accidenteService: AccidentesService,private route:Router,private auth:AuthService) {}
 
   ngOnInit(): void {
-    this.accidenteService
-      .getAllAccidentes()
-      .subscribe((data) => (this.accidentes = data));
+        this.accidenteService
+        .getAllAccidentes()
+        .subscribe((data) => (this.accidentes = data));
   }
 
   actualizarAccidente(accidente:Accidente){

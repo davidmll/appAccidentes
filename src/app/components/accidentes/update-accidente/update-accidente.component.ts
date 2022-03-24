@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Accidente } from 'src/app/interfaces/accidente';
 import { Zona } from 'src/app/interfaces/zona';
 import { AccidentesService } from 'src/app/services/accidentes.service';
+import { AuthService } from 'src/app/services/auth.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -21,46 +22,58 @@ export class UpdateAccidenteComponent implements OnInit {
   constructor(
     private route: Router,
     private accidenteService: AccidentesService,
-    private activate: ActivatedRoute
+    private activate: ActivatedRoute,
+    private auth: AuthService
   ) {
     this.data = this.route.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(): void {
-    this.accidenteService.getZonas().subscribe((data) => (this.zonas = data));
+    if (
+      this.auth.isAuthenticated() &&
+      this.auth.usuario.roles[0] == 'ROLE_ADMIN'
+    ) {
+      this.accidenteService.getZonas().subscribe((data) => (this.zonas = data));
 
-    this.activate.paramMap.subscribe((params) => {
-      let idZona = +params.get('idZona')!;
-      if (idZona) {
-        this.accidenteService
-          .getAccidente(idZona)
-          .subscribe((resp) => (this.dataUpdateAccidentes = resp));
-      }
-    });
+      this.activate.paramMap.subscribe((params) => {
+        let idZona = +params.get('idZona')!;
+        if (idZona) {
+          this.accidenteService
+            .getAccidente(idZona)
+            .subscribe((resp) => (this.dataUpdateAccidentes = resp));
+        }
+      });
 
-    this.dataUpdateAccidentes = new FormGroup({
-      idAccidente: new FormControl(this.data.idAccidente, Validators.required),
-      titulo: new FormControl(this.data.titulo, Validators.required),
-      localizacion: new FormControl(
-        this.data.localizacion,
-        Validators.required
-      ),
-      tipo: new FormControl(this.data.tipo, Validators.required),
-      asunto: new FormControl(this.data.asunto, Validators.required),
-      fecha: new FormControl(this.data.fecha, Validators.required),
-    });
+      this.dataUpdateAccidentes = new FormGroup({
+        idAccidente: new FormControl(
+          this.data.idAccidente,
+          Validators.required
+        ),
+        titulo: new FormControl(this.data.titulo, Validators.required),
+        localizacion: new FormControl(
+          this.data.localizacion,
+          Validators.required
+        ),
+        tipo: new FormControl(this.data.tipo, Validators.required),
+        asunto: new FormControl(this.data.asunto, Validators.required),
+        fecha: new FormControl(this.data.fecha, Validators.required),
+      });
+    } else {
+      this.route.navigate(['/']);
+    }
   }
 
-  actualizar(){
-    this.accidenteService.updateAccidente(this.dataUpdateAccidentes.value).subscribe(
-      ()=>{
-        swal('Registro Actualizado:',`${this.data.titulo}`,'success');
-        this.route.navigate(['/accidentes']);
-      },
-      (err) => {
-        swal('Error',`${err}`,'error');
-        console.log(this.dataUpdateAccidentes.value);
-      }
-    );
+  actualizar() {
+    this.accidenteService
+      .updateAccidente(this.dataUpdateAccidentes.value)
+      .subscribe(
+        () => {
+          swal('Registro Actualizado:', `${this.data.titulo}`, 'success');
+          this.route.navigate(['/accidentes']);
+        },
+        (err) => {
+          swal('Error', `${err}`, 'error');
+        }
+      );
   }
 }

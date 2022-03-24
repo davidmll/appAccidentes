@@ -1,0 +1,11 @@
+<div class="container">
+  <h3 class="text-center">{{titulo}}</h3>
+  <form (ngSubmit)="create()">
+    <label class="form-label">Usuario</label>
+    <input type="text" name="username"  placeholder="usuario.." class="form-control" [(ngModel)]="usuario.username" required>
+    <label class="form-label">Contraseña</label>
+    <input type="text" name="password" placeholder="contraseña..." class="form-control" [(ngModel)]="usuario.password" required>
+    <br>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

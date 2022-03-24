@@ -9,11 +9,15 @@ import { UpdateEmpresaComponent } from './components/empresas/update-empresa/upd
 import { AddFurgonetaComponent } from './components/furgonetas/add-furgoneta/add-furgoneta.component';
 import { ShowFurgonetaComponent } from './components/furgonetas/show-furgoneta/show-furgoneta.component';
 import { UpdateFurgonetaComponent } from './components/furgonetas/update-furgoneta/update-furgoneta.component';
+import { FormUsuarioComponent } from './components/usuarios/form-usuario/form-usuario.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { HomeComponent } from './pages/home/home.component';
+import { VistaAccidentesComponent } from './pages/vista-accidentes/vista-accidentes.component';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: '/',
+    redirectTo: '/accidentes',
     pathMatch: 'full'
   },
   {
@@ -52,6 +56,26 @@ const routes: Routes = [
     path:'editarVehiculo',
     component: UpdateFurgonetaComponent
   },
+  {
+    path:'usuarios',
+    component: UsuariosComponent
+  },
+  {
+    path:'login',
+    component: FormUsuarioComponent
+  },
+  {
+    path:'home',
+    component: HomeComponent
+  },
+  {
+    path:'vistaAccidentes',
+    component: VistaAccidentesComponent
+  },
+  {
+    path:'**',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({

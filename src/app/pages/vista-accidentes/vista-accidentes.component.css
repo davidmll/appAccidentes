@@ -1,0 +1,23 @@
+.contenedor{
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 95%;
+  margin: 2% auto;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.contenedor h3{
+  padding-top: 5px;
+}
+
+.subcontenedor{
+  display: flex;
+  justify-content: space-around;
+}
+
+.subcontenedor p{
+  margin-top: 13px;
+}

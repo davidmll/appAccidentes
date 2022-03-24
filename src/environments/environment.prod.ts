@@ -5,5 +5,6 @@ export const environment = {
   apiFurgoneta:'http://localhost:8080/api/furgonetas',
   apiFurgonetaPost: 'http://localhost:8080/api/furgoneta',
   apiEmpresa: 'http://localhost:8080/api/empresas',
-  apiEmpresaPost: 'http://localhost:8080/api/empresa'
+  apiEmpresaPost: 'http://localhost:8080/api/empresa',
+  apiAuth: 'http://localhost:8080/oauth/token'
 };

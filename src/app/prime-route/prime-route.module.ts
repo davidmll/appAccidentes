@@ -10,6 +10,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {PaginatorModule} from 'primeng/paginator';
 import {MenubarModule} from 'primeng/menubar';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import {MenubarModule} from 'primeng/menubar';
     DropdownModule,
     InputTextareaModule,
     PaginatorModule,
-    MenubarModule
+    MenubarModule,
+    CardModule
   ],
   exports: [
     TableModule,
@@ -36,7 +38,8 @@ import {MenubarModule} from 'primeng/menubar';
     DropdownModule,
     InputTextareaModule,
     PaginatorModule,
-    MenubarModule
+    MenubarModule,
+    CardModule
   ],
 })
 export class PrimeRouteModule {}

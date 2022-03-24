@@ -1,45 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Empresa } from 'src/app/interfaces/empresa';
+import { AuthService } from 'src/app/services/auth.service';
 import { EmpresasService } from 'src/app/services/empresas.service';
 import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-show-empresa',
   templateUrl: './show-empresa.component.html',
-  styleUrls: ['./show-empresa.component.css']
+  styleUrls: ['./show-empresa.component.css'],
 })
 export class ShowEmpresaComponent implements OnInit {
-
   empresas!: Empresa[];
 
   first = 0;
 
   rows = 5;
 
-  constructor(private empresaService:EmpresasService,private route:Router) {}
+  constructor(
+    private empresaService: EmpresasService,
+    private route: Router,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.empresaService.getAllEmpresas().subscribe(
-      data => {this.empresas = data,console.log(data);
-      }
-    );
-
-    console.log(this.empresas)
-
-
+    if (
+      this.auth.isAuthenticated() &&
+      this.auth.usuario.roles[0] == 'ROLE_ADMIN'
+    ) {
+      this.empresaService.getAllEmpresas().subscribe((data) => {
+        this.empresas = data;
+      });
+    } else {
+      this.route.navigate(['/']);
+    }
   }
 
-  actualizarEmpresa(empresa:Empresa){
-    this.route.navigate(['/editarEmpresa'],{
-      state:{
-        idEmpresa: empresa.idempresa,
+  actualizarEmpresa(empresa: Empresa) {
+    this.route.navigate(['/editarEmpresa'], {
+      state: {
+        idempresa: empresa.idempresa,
         nombre: empresa.nombre,
-        accidentes: empresa.accidentes
-      }
+        accidentes: empresa.accidentes,
+      },
     });
-    console.log(empresa);
-
   }
 
   eliminarEmpresa(empresa: Empresa) {
@@ -60,9 +64,7 @@ export class ShowEmpresaComponent implements OnInit {
         this.empresaService
           .deleteEmpresa(empresa.idempresa)
           .subscribe((resp) => {
-            this.empresas = this.empresas.filter(
-              (res) => res !== empresa
-            );
+            this.empresas = this.empresas.filter((res) => res !== empresa);
             swal(
               'Empresa eliminada.',
               `${empresa.nombre} eliminado con éxito`,
@@ -95,5 +97,4 @@ export class ShowEmpresaComponent implements OnInit {
   isFirstPage(): boolean {
     return this.empresas ? this.first === 0 : true;
   }
-
 }

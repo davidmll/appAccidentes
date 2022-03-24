@@ -1,0 +1,22 @@
+
+
+<div class="contenedor" >
+  <p-card [style]="{'width':'250px','height':'300px','margin-right':'10px'}" *ngFor="let accidente of accidentes">
+    <ng-template pTemplate="header">
+        <h3>{{accidente.titulo  | uppercase}}</h3>
+    </ng-template>
+      <p>{{accidente.asunto}}</p>
+
+      <div class="subcontenedor">
+        <p>{{accidente.localizacion.nombre}}</p>
+        <button  *ngIf="accidente.tipo.estado=='Pendiente'" class="btn btn-warning">{{accidente.tipo.estado}}</button>
+        <button *ngIf="accidente.tipo.estado=='Aprobado'" class="btn btn-success">{{accidente.tipo.estado}}</button>
+        <button *ngIf="accidente.tipo.estado=='Cancelado'" class="btn btn-danger">{{accidente.tipo.estado}}</button>
+      </div>
+
+
+    <ng-template pTemplate="footer">
+        {{accidente.fecha | date: 'shortDate'}}
+    </ng-template>
+  </p-card>
+</div>

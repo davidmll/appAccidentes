@@ -1,10 +1,11 @@
+import { Estado } from "./estado";
 import { Zona } from "./zona";
 
 export class Accidente {
   idAccidente!:number;
   titulo!:string;
   localizacion!:Zona;
-  tipo!:string;
+  tipo!:Estado;
   asunto!:string;
   fecha!:string;
 

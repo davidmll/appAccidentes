@@ -1,0 +1,49 @@
+<div class="card border-primary mb-3">
+  <div class="card-body text-primary">
+    <h4>Listado de usuarios</h4>
+    <div class="my-2 text-left">
+      <button class="btn btn.rounded btn-primary" type="button" routerLink="/usuario/nuevo">Login</button>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Password</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of usuarios">
+      <th scope="row">{{cliente.id}}</th>
+      <td>{{cliente.username}}</td>
+      <td>{{cliente.password}}</td>
+      <td>
+        <button (click)="editarUsuario()"  class="btn btn-warning">Editar</button>
+        <button  type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ventana Modal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <pre>¿Estas seguro de que quieres eliminar este cliente?</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="eliminarUsuario()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
